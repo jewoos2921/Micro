@@ -1,7 +1,7 @@
 application: YOUR_APPLICATION_ID_HERE
 version: 1
 runtime: go118
-module: api
+module: default
 api_version: go1
 
 handlers:

@@ -1,0 +1,6 @@
+application: YOUR_APPLICATION_ID_HERE
+dispatch:
+  - url: "*/api/*"
+    module: api
+  - url: "*/*"
+      module: web
