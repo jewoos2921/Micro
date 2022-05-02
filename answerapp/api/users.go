@@ -1,4 +1,4 @@
-package answerapp
+package main
 
 import (
 	"context"

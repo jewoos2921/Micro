@@ -30,3 +30,9 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusInternalServerError)
 	}
 }
+
+func init() {
+	http.HandleFunc("/api/questions/", handleQuestions)
+	http.HandleFunc("/api/answers/", handleAnswers)
+	http.HandleFunc("/api/votes/", handleVotes)
+}

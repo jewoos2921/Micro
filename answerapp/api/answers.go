@@ -1,4 +1,4 @@
-package answerapp
+package main
 
 import (
 	"context"
@@ -10,10 +10,16 @@ import (
 // 구글 클라우드 데이터스토어에서의 트랜잭션
 type Answer struct {
 	Key    *datastore.Key `json:"id" datastore:"-"`
-	Answer string         `json:"answer"`
+	Answer string         `json:"answer" datastore:",noindex"`
 	CTime  time.Time      `json:"created"`
-	User   UserCard       `json:"user"`
+	User   UserCard       `json:"user" datastore:",noindex"`
 	Score  int            `json:"score"`
+}
+
+type AnswerCard struct {
+	Key    *datastore.Key `json:"id" datastore:",noindex"`
+	Answer string         `json:"answer" datastore:",noindex"`
+	User   UserCard       `json:"user" datastore:",noindex"`
 }
 
 func (a Answer) OK() error {
@@ -89,4 +95,12 @@ func GetAnswers(ctx context.Context, questionKey *datastore.Key) ([]*Answer, err
 		return nil, err
 	}
 	return answers, nil
+}
+
+func (a Answer) Card() AnswerCard {
+	return AnswerCard{
+		Key:    a.Key,
+		Answer: a.Answer,
+		User:   a.User,
+	}
 }
