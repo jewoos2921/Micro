@@ -1,0 +1,8 @@
+runtime: go118
+api_version: go1
+application: YOUR_APPLICATION_ID_HERE
+version: 1
+
+handlers:
+  - url: /.*
+    script: _go_app
